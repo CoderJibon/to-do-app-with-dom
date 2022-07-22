@@ -65,14 +65,14 @@ const progressBar = (start_time, end_time) => {
 
     let width = '';
 
-    if (progressWidth >= 0 && progressWidth <= 33) {
+    if (progressWidth >= 1 && progressWidth <= 33) {
         width = `width:${progressWidth}%; background-color:red;`;
     } else if (progressWidth >= 34 && progressWidth <= 66) {
         width = `width:${progressWidth}%; background-color:orange;`;
     }else if (progressWidth >= 67 && progressWidth <= 100) {
         width = `width:${progressWidth}%; background-color:green;`;
-    } else {
-        width = `width:${progressWidth}%; background-color:red;`;
+    }else {
+        width = `width:100%; background-color:red;`;
     }
 
     return width;
