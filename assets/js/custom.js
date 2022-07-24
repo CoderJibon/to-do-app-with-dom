@@ -60,7 +60,7 @@ const displayData = () => {
                   <strong>
                    ${timeKeeper(item.end_time)}
                   </strong>
-                  <button onclick="deleteList(${item.id})" class="close">×</button>
+                  <button deleteList="${item.id}" class="close">×</button>
                   <span style="${progressBar(item.start_time,item.end_time)}" class="status"></span>
                 </li>`;
     });
@@ -81,21 +81,26 @@ setInterval(() => {
   displayData();
 }, 1000);
 
+displayData();
+
 
 // delate item
-const deleteList = (e) => {
-  const id = e;
-  //read all data
-  let allData = readLsData('to_do_app');
-  //get the data id
-  const index = allData.findIndex(data => data.id == id);
-  //remove id
-  allData.splice(index,1);
-  //again update new data
-  updateLSData('to_do_app', allData);
-  //show data
-  displayData()
+list_group.onclick = (e) => {
+  if (e.target.hasAttribute('deleteList')) {
+      const id = e.target.getAttribute('deleteList');
+      //read all data
+      let allData = readLsData('to_do_app');
+      //get the data id
+      const index = allData.findIndex(data => data.id == id);
+      //remove id
+      allData.splice(index,1);
+      //again update new data
+      updateLSData('to_do_app', allData);
+      //show data
+    displayData();
+  }
 }
+
 
 
 
